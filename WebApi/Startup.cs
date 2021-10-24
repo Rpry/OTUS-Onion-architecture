@@ -1,9 +1,11 @@
+using AutoMapper;
 using ComponentRegistrar;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using WebApi.Mapping;
 
 namespace WebApi
 {
@@ -19,9 +21,9 @@ namespace WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            InstallAutomapper(services);
             services.AddServices(Configuration);
-
+            services.AddControllers();
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen();
         }
@@ -60,5 +62,25 @@ namespace WebApi
                 endpoints.MapControllers();
             });
         }
+        
+        private static IServiceCollection InstallAutomapper(IServiceCollection services)
+        {
+            services.AddSingleton<IMapper>(new Mapper(GetMapperConfiguration()));
+            return services;
+        }
+        
+        private static MapperConfiguration GetMapperConfiguration()
+        {
+            var configuration = new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile<CourseMappingsProfile>();
+                cfg.AddProfile<LessonMappingsProfile>();
+                cfg.AddProfile<BusinessLogic.Services.Mapping.CourseMappingsProfile>();
+                cfg.AddProfile<BusinessLogic.Services.Mapping.LessonMappingsProfile>();
+            });
+            configuration.AssertConfigurationIsValid();
+            return configuration;
+        }
     }
+    
 }

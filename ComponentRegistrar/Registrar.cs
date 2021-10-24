@@ -1,7 +1,5 @@
-﻿using AutoMapper;
-using BusinessLogic.Abstractions;
+﻿using BusinessLogic.Abstractions;
 using BusinessLogic.Services;
-using BusinessLogic.Services.Mapping;
 using ComponentRegistrar.Settings;
 using DataAccess.EntityFramework;
 using DataAccess.Repositories;
@@ -20,27 +18,9 @@ namespace ComponentRegistrar
             var applicationSettings = configuration.Get<ApplicationSettings>();
             services.AddSingleton(applicationSettings);
             return services.AddSingleton((IConfigurationRoot)configuration)
-                .InstallAutomapper()
                 .InstallServices()
                 .ConfigureContext(applicationSettings.ConnectionString)
                 .InstallRepositories();
-        }
-
-        private static IServiceCollection InstallAutomapper(this IServiceCollection services)
-        {
-            services.AddSingleton<IMapper>(new Mapper(GetMapperConfiguration()));
-            return services;
-        }
-
-        private static MapperConfiguration GetMapperConfiguration()
-        {
-            var configuration = new MapperConfiguration(cfg =>
-            {
-                cfg.AddProfile<CourseMappingsProfile>();
-                cfg.AddProfile<LessonMappingsProfile>();
-            });
-            configuration.AssertConfigurationIsValid();
-            return configuration;
         }
         
         private static IServiceCollection InstallServices(this IServiceCollection serviceCollection)

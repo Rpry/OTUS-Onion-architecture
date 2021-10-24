@@ -1,8 +1,11 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using AutoMapper;
 using BusinessLogic.Abstractions;
 using BusinessLogic.Contracts;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using WebApi.Models;
 
 namespace WebApi.Controllers
 {
@@ -12,29 +15,31 @@ namespace WebApi.Controllers
     {
         private ILessonService _service;
         private readonly ILogger<LessonController> _logger;
+        private IMapper _mapper;
 
-        public LessonController(ILessonService service, ILogger<LessonController> logger)
+        public LessonController(ILessonService service, ILogger<LessonController> logger, IMapper mapper)
         {
             _service = service;
             _logger = logger;
+            _mapper = mapper;
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            return Ok(await _service.GetById(id));
+            return Ok(_mapper.Map<LessonModel>(await _service.GetById(id)));
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(LessonDto lessonDto)
+        public async Task<IActionResult> Add(LessonModel lessonDto)
         {
-            return Ok(await _service.Create(lessonDto));
+            return Ok(await _service.Create(_mapper.Map<LessonDto>(lessonDto)));
         }
         
         [HttpPut("{id}")]
-        public async Task<IActionResult> Edit(int id, LessonDto lessonDto)
+        public async Task<IActionResult> Edit(int id, LessonModel lessonDto)
         {
-            await _service.Update(id, lessonDto);
+            await _service.Update(id, _mapper.Map<LessonDto>(lessonDto));
             return Ok();
         }
         
@@ -48,7 +53,7 @@ namespace WebApi.Controllers
         [HttpGet("list/{page}/{itemsPerPage}")]
         public async Task<IActionResult> GetList(int page, int itemsPerPage)
         {
-            return Ok(await _service.GetPaged(page, itemsPerPage));
+            return Ok(_mapper.Map<List<LessonModel>>(await _service.GetPaged(page, itemsPerPage)));
         }
     }
 }
