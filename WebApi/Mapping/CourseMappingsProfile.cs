@@ -1,5 +1,5 @@
 using AutoMapper;
-using BusinessLogic.Contracts;
+using Services.Contracts;
 using WebApi.Models;
 
 namespace WebApi.Mapping

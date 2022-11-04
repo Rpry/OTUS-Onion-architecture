@@ -1,5 +1,4 @@
 using AutoMapper;
-using ComponentRegistrar;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -75,8 +74,8 @@ namespace WebApi
             {
                 cfg.AddProfile<CourseMappingsProfile>();
                 cfg.AddProfile<LessonMappingsProfile>();
-                cfg.AddProfile<BusinessLogic.Services.Mapping.CourseMappingsProfile>();
-                cfg.AddProfile<BusinessLogic.Services.Mapping.LessonMappingsProfile>();
+                cfg.AddProfile<Services.Implementations.Mapping.CourseMappingsProfile>();
+                cfg.AddProfile<Services.Implementations.Mapping.LessonMappingsProfile>();
             });
             configuration.AssertConfigurationIsValid();
             return configuration;

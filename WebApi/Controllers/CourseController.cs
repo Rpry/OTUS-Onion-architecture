@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Services.Abstractions;
 using AutoMapper;
-using BusinessLogic.Abstractions;
-using BusinessLogic.Contracts;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Services.Contracts;
 using WebApi.Models;
 
 namespace WebApi.Controllers

@@ -15,7 +15,10 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\ComponentRegistrar\ComponentRegistrar.csproj" />
+      <ProjectReference Include="..\Infrastructure\Infrastructure.EntityFramework\Infrastructure.EntityFramework.csproj" />
+      <ProjectReference Include="..\Infrastructure\Infrastructure.Repositories.Implementations\Infrastructure.Repositories.Implementations.csproj" />
+      <ProjectReference Include="..\Services\Services.Abstractions\Services.Abstractions.csproj" />
+      <ProjectReference Include="..\Services\Services.Implementations\Services.Implementations.csproj" />
     </ItemGroup>
 
     <ItemGroup>

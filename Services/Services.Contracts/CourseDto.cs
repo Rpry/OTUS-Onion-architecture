@@ -1,12 +1,11 @@
 ﻿using System.Collections.Generic;
-using Services.Contracts;
 
-namespace WebApi.Models
+namespace Services.Contracts
 {
     /// <summary>
     /// ДТО курса
     /// </summary>
-    public class CourseModel
+    public class CourseDto
     {
         /// <summary>
         /// Название
