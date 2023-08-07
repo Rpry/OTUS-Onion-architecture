@@ -31,15 +31,15 @@ namespace WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(CourseModel lessonDto)
+        public async Task<IActionResult> Add(CourseModel courseModel)
         {
-            return Ok(await _service.Create(_mapper.Map<CourseDto>(lessonDto)));
+            return Ok(await _service.Create(_mapper.Map<CourseDto>(courseModel)));
         }
         
         [HttpPut("{id}")]
-        public async Task<IActionResult> Edit(int id, CourseModel lessonDto)
+        public async Task<IActionResult> Edit(int id, CourseModel courseModel)
         {
-            await _service.Update(id, _mapper.Map<CourseDto>(lessonDto));
+            await _service.Update(id, _mapper.Map<CourseDto>(courseModel));
             return Ok();
         }
         
