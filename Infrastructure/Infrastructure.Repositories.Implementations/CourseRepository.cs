@@ -22,7 +22,7 @@ namespace Infrastructure.Repositories.Implementations
         /// </summary>
         /// <param name="page">номер страницы</param>
         /// <param name="itemsPerPage">объем страницы</param>
-        /// <returns>список ДТО курсов</returns>
+        /// <returns> Список курсов</returns>
         public async Task<List<Course>> GetPagedAsync(int page, int itemsPerPage)
         {
             var query = GetAll();

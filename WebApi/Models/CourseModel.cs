@@ -4,7 +4,7 @@ using Services.Contracts;
 namespace WebApi.Models
 {
     /// <summary>
-    /// ДТО курса
+    /// Модель курса
     /// </summary>
     public class CourseModel
     {

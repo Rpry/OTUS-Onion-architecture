@@ -5,7 +5,7 @@ using Domain.Entities;
 namespace Services.Repositories.Abstractions
 {
     /// <summary>
-    /// Репозиторий работы с уроками
+    /// Интерфейс репозитория работы с уроками
     /// </summary>
     public interface ILessonRepository: IRepository<Lesson, int>
     {

@@ -5,7 +5,7 @@ using Domain.Entities;
 namespace Services.Repositories.Abstractions
 {
     /// <summary>
-    /// Репозиторий работы с уроками
+    /// Интерфейс репозитория работы с уроками
     /// </summary>
     public interface ICourseRepository: IRepository<Course, int>
     {
@@ -14,7 +14,7 @@ namespace Services.Repositories.Abstractions
         /// </summary>
         /// <param name="page">номер страницы</param>
         /// <param name="itemsPerPage">объем страницы</param>
-        /// <returns>список ДТО курсов</returns>
+        /// <returns> Список курсов</returns>
         Task<List<Course>> GetPagedAsync(int page, int itemsPerPage);
     }
 }
